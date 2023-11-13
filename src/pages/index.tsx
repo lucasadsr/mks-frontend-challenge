@@ -1,10 +1,27 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import { Header } from '@/components/Header'
+import { api } from '@/lib/axios'
+import { GetServerSideProps } from 'next'
+import { Products } from '@/components/Products'
 
-const inter = Inter({ subsets: ['latin'] })
+export interface IProduct {
+  id: number
+  name: string
+  brand: string
+  description: string
+  photo: string
+  price: string
+}
 
-export default function Home() {
+interface HomeProps {
+  data: {
+    products: IProduct[]
+  }
+}
+
+export default function Home({ data }: HomeProps) {
+  console.log(data.products)
+
   return (
     <>
       <Head>
@@ -15,6 +32,27 @@ export default function Home() {
       </Head>
 
       <Header />
+      <Products products={data.products} />
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const response = await api.get('/products?page=1&rows=50&sortBy=id&orderBy=ASC');
+    const data = response.data;
+
+    return {
+      props: {
+        data,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return {
+      props: {
+        products: [],
+      },
+    };
+  }
 }
