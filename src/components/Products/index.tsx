@@ -1,5 +1,3 @@
-import { api } from "@/lib/axios"
-import { GetServerSideProps } from "next"
 import { ProductsContainer } from "./styles"
 import { ProductCard } from "../ProductCard"
 import { IProduct } from "@/pages"

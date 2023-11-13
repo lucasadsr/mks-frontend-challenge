@@ -2,7 +2,7 @@ import { styled } from "@/styles";
 
 export const CartContainer = styled('div', {
   position: 'absolute',
-  right: 0,
+  right: -10,
   top: 0,
   height: '100vh',
   width: 486,

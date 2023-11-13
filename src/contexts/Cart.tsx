@@ -17,7 +17,7 @@ export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState<IProduct[]>([])
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(true)
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
 
   function handleAddProductToCart(product: IProduct) {
     const productAlreadyInCart = cart.find(item => item.id === product.id)

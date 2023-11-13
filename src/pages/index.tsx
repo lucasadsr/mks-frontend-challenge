@@ -23,8 +23,6 @@ interface HomeProps {
 }
 
 export default function Home({ data }: HomeProps) {
-  console.log(data.products)
-
   return (
     <>
       <Head>

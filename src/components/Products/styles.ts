@@ -6,5 +6,5 @@ export const ProductsContainer = styled('section', {
   gridTemplateColumns: '218px 218px 218px 218px',
   gridColumnGap: '22px',
   gridRowGap: '31px',
-  margin: '116px auto 0 auto'
+  margin: '70px auto 36px auto'
 })
