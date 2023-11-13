@@ -2,12 +2,15 @@ import Image from "next/image";
 import { ImageContainer, Price, ProductContainer, ProductNameAndPrice, ProductName, ProductDescription, BuyButton } from "./styles";
 import { ShoppingBagOpen } from "phosphor-react";
 import { IProduct } from "@/pages";
+import { useContext } from 'react'
+import { CartContext } from "@/contexts/Cart";
 
 interface IProductCard {
   product: IProduct
 }
 
 export function ProductCard(props: IProductCard) {
+  const { handleAddProductToCart } = useContext(CartContext)
   const { name, description, photo, price } = props.product
   const formatedPrice = price.slice(0, -3)
 
@@ -26,7 +29,7 @@ export function ProductCard(props: IProductCard) {
           {description}
         </ProductDescription>
       </>
-      <BuyButton>
+      <BuyButton onClick={() => handleAddProductToCart(props.product)}>
         <ShoppingBagOpen color="#FFF" width={16} height={16} />
         <p>COMPRAR</p>
       </BuyButton>

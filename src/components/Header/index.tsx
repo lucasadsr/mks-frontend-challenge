@@ -1,7 +1,11 @@
+import { CartContext } from "@/contexts/Cart";
 import { CartButton, HeaderContainer, Logo } from "./styles";
 import { ShoppingCart } from 'phosphor-react'
+import { useContext } from 'react'
 
 export function Header() {
+  const { cart } = useContext(CartContext)
+
   return (
     <HeaderContainer>
       <Logo>
@@ -11,7 +15,7 @@ export function Header() {
 
       <CartButton>
         <ShoppingCart weight="bold" size={18} />
-        <span>0</span>
+        <span>{cart.length}</span>
       </CartButton>
     </HeaderContainer>
   )
