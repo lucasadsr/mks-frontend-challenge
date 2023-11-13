@@ -9,4 +9,8 @@ export const {
   getCssText,
   theme,
   createTheme,
-} = createStitches()
+} = createStitches({
+  media: {
+    bp1: '(max-width: 768px)'
+  }
+})
