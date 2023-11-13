@@ -3,6 +3,7 @@ import { Header } from '@/components/Header'
 import { api } from '@/lib/axios'
 import { GetServerSideProps } from 'next'
 import { Products } from '@/components/Products'
+import { Footer } from '@/components/Footer'
 
 export interface IProduct {
   id: number
@@ -33,6 +34,7 @@ export default function Home({ data }: HomeProps) {
 
       <Header />
       <Products products={data.products} />
+      <Footer />
     </>
   )
 }
