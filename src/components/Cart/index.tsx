@@ -5,7 +5,7 @@ import { CartContext } from "@/contexts/Cart";
 import Image from "next/image";
 
 export function Cart() {
-  const { cart } = useContext(CartContext)
+  const { cart, handleAddProductToCart, handleRemoveProductFromCart } = useContext(CartContext)
   const totalPrice = cart.reduce((total, item) => total + (Number(item.price) * item.quantity), 0)
 
   return (
@@ -27,11 +27,11 @@ export function Cart() {
                   <QuantityManagerContainer>
                     <span>Qtd:</span>
                     <QuantityManager>
-                      <button>
+                      <button onClick={() => handleRemoveProductFromCart(item)}>
                         <Minus width={5} color="#000" />
                       </button>
                       <span>{item.quantity}</span>
-                      <button>
+                      <button onClick={() => handleAddProductToCart(item)}>
                         <Plus width={5} color="#000" />
                       </button>
                     </QuantityManager>

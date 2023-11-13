@@ -4,6 +4,7 @@ import { ReactNode, createContext, useState } from 'react'
 interface CartContextType {
   cart: IProduct[]
   handleAddProductToCart: (product: IProduct) => void
+  handleRemoveProductFromCart: (product: IProduct) => void
 }
 
 interface CartContextProviderProps {
@@ -29,12 +30,31 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function handleRemoveProductFromCart(product: IProduct) {
+    const item = cart.find(item => item.id === product.id)
+
+    if (!item) {
+      return
+    }
+
+    if (item.quantity > 1) {
+      setCart(prev => prev.map(item => {
+        return (
+          item.id === product.id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+      }))
+    } else {
+      setCart(prev => prev.filter(item => item.id !== product.id))
+    }
+  }
+
   console.log(cart)
 
   return (
     <CartContext.Provider value={{
       cart,
       handleAddProductToCart,
+      handleRemoveProductFromCart
     }}>
       {children}
     </CartContext.Provider>
