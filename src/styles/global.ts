@@ -15,6 +15,7 @@ export const globalStyles = globalCss({
 
   'body, input, textarea, button': {
     fontFamily: 'Montserrat, sans-serif',
-    fontWeight: 400
+    fontWeight: 400,
+    overflowX: 'hidden'
   }
 })

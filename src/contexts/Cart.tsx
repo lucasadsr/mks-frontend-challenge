@@ -3,6 +3,8 @@ import { ReactNode, createContext, useState } from 'react'
 
 interface CartContextType {
   cart: IProduct[]
+  isCartOpen: boolean
+  toggleCart: () => void
   handleAddProductToCart: (product: IProduct) => void
   handleRemoveProductFromCart: (product: IProduct) => void
 }
@@ -15,6 +17,7 @@ export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState<IProduct[]>([])
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(true)
 
   function handleAddProductToCart(product: IProduct) {
     const productAlreadyInCart = cart.find(item => item.id === product.id)
@@ -48,13 +51,21 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
-  console.log(cart)
+  function toggleCart() {
+    if (isCartOpen) {
+      setIsCartOpen(false)
+    } else {
+      setIsCartOpen(true)
+    }
+  }
 
   return (
     <CartContext.Provider value={{
       cart,
       handleAddProductToCart,
-      handleRemoveProductFromCart
+      handleRemoveProductFromCart,
+      isCartOpen,
+      toggleCart,
     }}>
       {children}
     </CartContext.Provider>

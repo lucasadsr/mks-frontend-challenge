@@ -8,6 +8,18 @@ export const CartContainer = styled('div', {
   width: 486,
   backgroundColor: '#0F52BA',
   boxShadow: '-5px 0px 6px 0px rgba(0, 0, 0, 0.13)',
+  transition: 'all 0.3s',
+
+  variants: {
+    isCartOpen: {
+      true: {
+        transform: 'translateX((100vw - 100%))',
+      },
+      false: {
+        transform: 'translateX(100%)',
+      }
+    }
+  }
 })
 
 export const Wrapper = styled('div', {

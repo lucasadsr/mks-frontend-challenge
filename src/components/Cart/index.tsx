@@ -5,17 +5,19 @@ import { CartContext } from "@/contexts/Cart";
 import Image from "next/image";
 
 export function Cart() {
-  const { cart, handleAddProductToCart, handleRemoveProductFromCart } = useContext(CartContext)
+  const { cart, handleAddProductToCart, handleRemoveProductFromCart, toggleCart, isCartOpen } = useContext(CartContext)
   const totalPrice = cart.reduce((total, item) => total + (Number(item.price) * item.quantity), 0)
 
+  console.log(isCartOpen)
+
   return (
-    <CartContainer>
+    <CartContainer isCartOpen={isCartOpen} >
       <Wrapper>
         <div>
           <Header>
             <Title>Carrinho de compras</Title>
             <CloseCartButton>
-              <X width={16} color="#FFF" weight="bold" />
+              <X width={16} color="#FFF" weight="bold" onClick={toggleCart} />
             </CloseCartButton>
           </Header>
           <CartItemsContainer>
