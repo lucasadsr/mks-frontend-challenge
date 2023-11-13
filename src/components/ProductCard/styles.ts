@@ -9,7 +9,11 @@ export const ProductContainer = styled('div', {
   borderRadius: 8,
 
   boxShadow: '0px 2px 8px 0px rgba(0, 0, 0, 0.14)',
-  backgroundColor: '#fff'
+  backgroundColor: '#fff',
+
+  '@bp1': {
+    width: 250,
+  }
 })
 
 export const ImageContainer = styled('div', {
@@ -59,7 +63,7 @@ export const BuyButton = styled('button', {
 
   backgroundColor: '#0F52BA',
 
-  width: 218,
+  width: '100%',
   height: 32,
 
   borderRadius: '0px 0px 8px 8px',
