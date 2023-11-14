@@ -6,6 +6,10 @@ import { Products } from '@/components/Products'
 import { Footer } from '@/components/Footer'
 import { Cart } from '@/components/Cart'
 import { ToastContainer } from 'react-toastify'
+import { useState, useEffect } from 'react'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import { SkeletonsContainer } from '@/components/SkeletonsContainer/styles'
 
 export interface IProduct {
   id: number
@@ -24,6 +28,14 @@ interface HomeProps {
 }
 
 export default function Home({ data }: HomeProps) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (data) {
+      setLoading(false);
+    }
+  }, [data]);
+
   return (
     <>
       <Head>
@@ -34,7 +46,19 @@ export default function Home({ data }: HomeProps) {
       </Head>
 
       <Header />
-      <Products products={data.products} />
+
+      {loading ? (
+        <SkeletonsContainer>
+          {
+            [...Array(8)].map((_, index) => (
+              <Skeleton key={index} height={250} />
+            ))
+          }
+        </SkeletonsContainer>
+      ) :
+        <Products products={data.products} />
+      }
+
       <Footer />
       <Cart />
       <ToastContainer
@@ -67,7 +91,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     console.error('Error fetching products:', error);
     return {
       props: {
-        products: [],
+        data: { products: [] },
       },
     };
   }
