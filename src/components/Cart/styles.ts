@@ -4,6 +4,7 @@ export const CartContainer = styled('div', {
   position: 'absolute',
   right: -10,
   top: 0,
+  zIndex: 10,
   height: '100vh',
   width: 486,
   backgroundColor: '#0F52BA',
@@ -14,11 +15,19 @@ export const CartContainer = styled('div', {
     isCartOpen: {
       true: {
         transform: 'translateX((100vw - 100%))',
+        overflowY: 'hidden'
       },
       false: {
         transform: 'translateX(100%)',
+        '@bp1': {
+          display: 'none',
+        }
       }
     }
+  },
+
+  '@bp1': {
+    width: '88vw',
   }
 })
 
@@ -28,7 +37,11 @@ export const Wrapper = styled('div', {
   flexDirection: 'column',
   justifyContent: 'space-between',
   height: 'calc(100% - 140px)',
-  overflowY: 'scroll'
+  overflowY: 'scroll',
+
+  '@bp1': {
+    paddingInline: 38,
+  }
 })
 
 export const Header = styled('header', {
@@ -54,7 +67,17 @@ export const CloseCartButton = styled('button', {
   padding: 8,
   borderRadius: 999,
 
-  cursor: 'pointer'
+  cursor: 'pointer',
+
+  '@bp1': {
+    width: 45,
+    height: 45,
+
+    svg: {
+      width: '100%',
+      height: '100%',
+    }
+  }
 })
 
 export const CartItemsContainer = styled('div', {
@@ -64,7 +87,43 @@ export const CartItemsContainer = styled('div', {
   marginTop: 64,
 })
 
+export const ItemPrice = styled('p', {
+  marginLeft: 40,
+  fontWeight: 700,
+  fontSize: 14,
+  color: '#000',
+
+  '@bp1': {
+    margin: 0,
+    width: 84,
+    height: 35,
+    backgroundColor: '#373737',
+
+    color: '#FFF',
+    fontSize: 15,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5
+  }
+})
+
+export const ItemName = styled('p', {
+  fontSize: 13,
+  width: 113,
+  margin: '0 9px 0 19px',
+
+  '@bp1': {
+    fontSize: 16,
+    width: '100%',
+    marginInline: 0,
+    textAlign: 'center',
+    padding: '14px 0 12px 0'
+  }
+})
+
 export const CartItem = styled('div', {
+  position: 'relative',
   width: '100%',
   height: 95,
   backgroundColor: '#fff',
@@ -75,18 +134,27 @@ export const CartItem = styled('div', {
   alignItems: 'center',
   paddingInline: 24,
 
-  P: {
-    fontSize: 13,
-    width: 113,
-    margin: '0 9px 0 19px',
-  },
-
   span: {
     marginLeft: 40,
     fontWeight: 700,
     fontSize: 14,
     color: '#000',
+
+    '@bp1': {
+      marginLeft: 0,
+    }
   },
+
+  '@bp1': {
+    flexDirection: 'column',
+    height: 220,
+    padding: 22,
+
+    img: {
+      width: 90,
+      height: 100,
+    }
+  }
 })
 
 export const QuantityManagerContainer = styled('div', {
@@ -101,6 +169,15 @@ export const QuantityManagerContainer = styled('div', {
     textAlign: 'left',
     marginLeft: 0,
   },
+
+  '@bp1': {
+    width: 98,
+    height: 35,
+
+    span: {
+      display: 'none'
+    }
+  }
 })
 
 export const QuantityManager = styled('div', {
@@ -129,6 +206,24 @@ export const QuantityManager = styled('div', {
     cursor: 'pointer',
     width: '100%',
     paddingInline: 4,
+  },
+
+  '@bp1': {
+    width: 100,
+    height: 35,
+
+    span: {
+      display: 'initial',
+      fontSize: 20,
+      width: '100%',
+      textAlign: 'center',
+      margin: 0
+    },
+
+    svg: {
+      width: 10,
+      height: 10,
+    }
   }
 })
 
@@ -157,3 +252,22 @@ export const PurchaseButton = styled('button', {
   fontSize: 28,
   cursor: 'pointer',
 })
+
+export const QtdAndPrice = styled('div', {
+  '@bp1': {
+    width: '100%',
+    height: 35,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+    marginTop: 12
+  }
+})
+
+export const RemoveItemButton = styled('button', {
+  background: 'none',
+  border: 'none',
+  position: 'absolute',
+  top: 9,
+  right: 14,
+}) 

@@ -7,6 +7,7 @@ interface CartContextType {
   toggleCart: () => void
   handleAddProductToCart: (product: IProduct) => void
   handleRemoveProductFromCart: (product: IProduct) => void
+  handleRemoveItem: (product: IProduct) => void
 }
 
 interface CartContextProviderProps {
@@ -51,6 +52,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function handleRemoveItem(product: IProduct) {
+    setCart(prev => prev.filter(item => item.id !== product.id))
+  }
+
   function toggleCart() {
     if (isCartOpen) {
       setIsCartOpen(false)
@@ -66,6 +71,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       handleRemoveProductFromCart,
       isCartOpen,
       toggleCart,
+      handleRemoveItem,
     }}>
       {children}
     </CartContext.Provider>

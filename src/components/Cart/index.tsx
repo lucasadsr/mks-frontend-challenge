@@ -1,14 +1,12 @@
 import { Minus, Plus, X } from "phosphor-react";
-import { CartContainer, CartItem, CartItemsContainer, CloseCartButton, Header, PurchaseButton, QuantityManager, QuantityManagerContainer, Title, TotalPrice, Wrapper } from "./styles";
+import { CartContainer, CartItem, CartItemsContainer, CloseCartButton, Header, ItemName, ItemPrice, PurchaseButton, QtdAndPrice, QuantityManager, QuantityManagerContainer, RemoveItemButton, Title, TotalPrice, Wrapper } from "./styles";
 import { useContext } from 'react'
 import { CartContext } from "@/contexts/Cart";
 import Image from "next/image";
 
 export function Cart() {
-  const { cart, handleAddProductToCart, handleRemoveProductFromCart, toggleCart, isCartOpen } = useContext(CartContext)
+  const { cart, handleAddProductToCart, handleRemoveProductFromCart, toggleCart, isCartOpen, handleRemoveItem } = useContext(CartContext)
   const totalPrice = cart.reduce((total, item) => total + (Number(item.price) * item.quantity), 0)
-
-  console.log(isCartOpen)
 
   return (
     <CartContainer isCartOpen={isCartOpen} >
@@ -24,21 +22,26 @@ export function Cart() {
             {cart.map(item => {
               return (
                 <CartItem key={item.id}>
+                  <RemoveItemButton onClick={() => handleRemoveItem(item)}>
+                    <X size={24} />
+                  </RemoveItemButton>
                   <Image src={item.photo} width={60} height={70} alt={item.name} />
-                  <p>{item.name}</p>
-                  <QuantityManagerContainer>
-                    <span>Qtd:</span>
-                    <QuantityManager>
-                      <button onClick={() => handleRemoveProductFromCart(item)}>
-                        <Minus width={5} color="#000" />
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button onClick={() => handleAddProductToCart(item)}>
-                        <Plus width={5} color="#000" />
-                      </button>
-                    </QuantityManager>
-                  </QuantityManagerContainer>
-                  <span>R${item.price.slice(0, -3)}</span>
+                  <ItemName>{item.name}</ItemName>
+                  <QtdAndPrice>
+                    <QuantityManagerContainer>
+                      <span>Qtd:</span>
+                      <QuantityManager>
+                        <button onClick={() => handleRemoveProductFromCart(item)}>
+                          <Minus width={5} color="#000" weight="bold" />
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button onClick={() => handleAddProductToCart(item)}>
+                          <Plus width={5} color="#000" weight="bold" />
+                        </button>
+                      </QuantityManager>
+                    </QuantityManagerContainer>
+                    <ItemPrice>R${item.price.slice(0, -3)}</ItemPrice>
+                  </QtdAndPrice>
                 </CartItem>
               )
             })}
