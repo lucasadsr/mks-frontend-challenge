@@ -5,7 +5,15 @@ import { CartContext } from "@/contexts/Cart";
 import Image from "next/image";
 
 export function Cart() {
-  const { cart, handleAddProductToCart, handleRemoveProductFromCart, toggleCart, isCartOpen, handleRemoveItem } = useContext(CartContext)
+  const {
+    cart,
+    isCartOpen,
+    handleAddProductToCart,
+    handleRemoveProductFromCart,
+    toggleCart,
+    handleRemoveItem,
+    handlePurchase
+  } = useContext(CartContext)
   const totalPrice = cart.reduce((total, item) => total + (Number(item.price) * item.quantity), 0)
 
   return (
@@ -51,7 +59,7 @@ export function Cart() {
           Total: <span>R${totalPrice}</span>
         </TotalPrice>
       </Wrapper>
-      <PurchaseButton>
+      <PurchaseButton onClick={handlePurchase}>
         Finalizar Compra
       </PurchaseButton>
     </CartContainer>

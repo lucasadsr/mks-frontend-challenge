@@ -8,6 +8,7 @@ interface CartContextType {
   handleAddProductToCart: (product: IProduct) => void
   handleRemoveProductFromCart: (product: IProduct) => void
   handleRemoveItem: (product: IProduct) => void
+  handlePurchase: () => void
 }
 
 interface CartContextProviderProps {
@@ -64,6 +65,15 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
   }
 
+  function handlePurchase() {
+    if (cart.length > 0) {
+      setCart([])
+      alert("Compra realizada com sucesso!")
+    } else {
+      alert("Adicione pelo menos um produto no carrinho para finalizar sua compra.")
+    }
+  }
+
   return (
     <CartContext.Provider value={{
       cart,
@@ -72,6 +82,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       isCartOpen,
       toggleCart,
       handleRemoveItem,
+      handlePurchase,
     }}>
       {children}
     </CartContext.Provider>

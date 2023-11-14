@@ -2,7 +2,7 @@ import { styled } from "@/styles";
 
 export const CartContainer = styled('div', {
   position: 'absolute',
-  right: -10,
+  right: -5,
   top: 0,
   zIndex: 10,
   height: '100vh',
@@ -92,6 +92,7 @@ export const ItemPrice = styled('p', {
   fontWeight: 700,
   fontSize: 14,
   color: '#000',
+  display: 'inline',
 
   '@bp1': {
     margin: 0,
@@ -119,6 +120,29 @@ export const ItemName = styled('p', {
     marginInline: 0,
     textAlign: 'center',
     padding: '14px 0 12px 0'
+  }
+})
+
+export const QuantityManagerContainer = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 4,
+  marginTop: -9,
+
+  span: {
+    fontSize: 5,
+    color: '#000',
+    textAlign: 'left',
+    marginLeft: 0,
+  },
+
+  '@bp1': {
+    width: 98,
+    height: 35,
+
+    span: {
+      display: 'none'
+    }
   }
 })
 
@@ -157,28 +181,6 @@ export const CartItem = styled('div', {
   }
 })
 
-export const QuantityManagerContainer = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: 4,
-  marginTop: -9,
-
-  span: {
-    fontSize: 5,
-    color: '#000',
-    textAlign: 'left',
-    marginLeft: 0,
-  },
-
-  '@bp1': {
-    width: 98,
-    height: 35,
-
-    span: {
-      display: 'none'
-    }
-  }
-})
 
 export const QuantityManager = styled('div', {
   width: 56,
@@ -254,20 +256,29 @@ export const PurchaseButton = styled('button', {
 })
 
 export const QtdAndPrice = styled('div', {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'right',
+  alignItems: 'center',
+
   '@bp1': {
-    width: '100%',
     height: 35,
-    display: 'flex',
-    justifyContent: 'space-between',
     alignItems: 'baseline',
-    marginTop: 12
+    marginTop: 12,
+    justifyContent: 'space-between',
   }
 })
 
 export const RemoveItemButton = styled('button', {
-  background: 'none',
-  border: 'none',
-  position: 'absolute',
-  top: 9,
-  right: 14,
+  display: 'none',
+
+  '@bp1': {
+    display: 'initial',
+    background: 'none',
+    border: 'none',
+    position: 'absolute',
+    top: 9,
+    right: 14,
+    cursor: 'pointer'
+  }
 }) 
