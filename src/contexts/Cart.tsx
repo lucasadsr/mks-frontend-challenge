@@ -60,7 +60,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   function toggleCart() {
     if (isCartOpen) {
       setIsCartOpen(false)
-      document.body.style.overflow = "scroll"
+      document.body.style.overflowY = "scroll"
+      document.body.style.overflowX = "hidden"
     } else {
       setIsCartOpen(true)
       window.scrollTo(0, 0)

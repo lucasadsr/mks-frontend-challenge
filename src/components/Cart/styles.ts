@@ -19,9 +19,6 @@ export const CartContainer = styled('div', {
       },
       false: {
         transform: 'translateX(100%)',
-        '@bp1': {
-          display: 'none',
-        }
       }
     }
   },
