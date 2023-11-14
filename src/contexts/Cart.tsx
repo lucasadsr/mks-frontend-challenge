@@ -60,14 +60,18 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   function toggleCart() {
     if (isCartOpen) {
       setIsCartOpen(false)
+      document.body.style.overflow = "scroll"
     } else {
       setIsCartOpen(true)
+      window.scrollTo(0, 0)
+      document.body.style.overflow = "hidden"
     }
   }
 
   function handlePurchase() {
     if (cart.length > 0) {
       setCart([])
+      setIsCartOpen(false)
       alert("Compra realizada com sucesso!")
     } else {
       alert("Adicione pelo menos um produto no carrinho para finalizar sua compra.")

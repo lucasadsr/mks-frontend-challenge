@@ -28,6 +28,7 @@ export const CartContainer = styled('div', {
 
   '@bp1': {
     width: '88vw',
+    height: '100vh'
   }
 })
 
