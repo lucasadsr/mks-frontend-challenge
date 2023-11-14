@@ -5,6 +5,7 @@ import { GetServerSideProps } from 'next'
 import { Products } from '@/components/Products'
 import { Footer } from '@/components/Footer'
 import { Cart } from '@/components/Cart'
+import { ToastContainer } from 'react-toastify'
 
 export interface IProduct {
   id: number
@@ -36,6 +37,18 @@ export default function Home({ data }: HomeProps) {
       <Products products={data.products} />
       <Footer />
       <Cart />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   )
 }

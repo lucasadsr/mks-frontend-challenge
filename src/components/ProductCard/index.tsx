@@ -4,6 +4,8 @@ import { ShoppingBagOpen } from "phosphor-react";
 import { IProduct } from "@/pages";
 import { useContext } from 'react'
 import { CartContext } from "@/contexts/Cart";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface IProductCard {
   product: IProduct
@@ -13,6 +15,22 @@ export function ProductCard(props: IProductCard) {
   const { handleAddProductToCart } = useContext(CartContext)
   const { name, description, photo, price } = props.product
   const formatedPrice = price.slice(0, -3)
+
+  const notify = () => toast.success('Item adicionado ao carrinho', {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
+  function handleAddPoduct() {
+    handleAddProductToCart(props.product)
+    notify()
+  }
 
   return (
     <ProductContainer>
@@ -29,7 +47,7 @@ export function ProductCard(props: IProductCard) {
           {description}
         </ProductDescription>
       </>
-      <BuyButton onClick={() => handleAddProductToCart(props.product)}>
+      <BuyButton onClick={handleAddPoduct}>
         <ShoppingBagOpen color="#FFF" width={16} height={16} />
         <p>COMPRAR</p>
       </BuyButton>
