@@ -1,5 +1,5 @@
 import { IProduct } from '@/pages'
-import { ReactNode, createContext, useState } from 'react'
+import { ReactNode, createContext, useEffect, useState } from 'react'
 
 interface CartContextType {
   cart: IProduct[]
@@ -20,6 +20,19 @@ export const CartContext = createContext({} as CartContextType)
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [cart, setCart] = useState<IProduct[]>([])
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart')
+    if (storedCart) {
+      setCart(JSON.parse(storedCart))
+    }
+  }, [])
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem('cart', JSON.stringify(cart))
+    }
+  }, [cart])
 
   function handleAddProductToCart(product: IProduct) {
     const productAlreadyInCart = cart.find(item => item.id === product.id)
