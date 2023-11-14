@@ -1,43 +1,29 @@
-Diretrizes do desafio
-===========================
+# MKS FrontEnd Challenge
 
-O objetivo principal desse teste é avaliar sua capacidade de escrever código limpo, bem testado e reutilizável. Ao terminar, faça o deploy da aplicação e mande-nos o link.
+<img src="./src/assets/desafio-mks.png" width="600" ></img>
 
-Tarefa (funcional)
----------------
+Este projeto foi desenvolvido como parte do desafio de frontend da MKS, utilizando Next.js, Axios, Stitches, Skeleton, TypeScript e LocalStorage. O projeto consiste em um e-commerce que consome uma API da MKS para exibir produtos e oferece funcionalidades interativas de carrinho de compras.
 
-Para esse desafio, você deve consumir nossa [API REST de produtos](https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api-docs/) para exibir a lista de produtos da loja.
+## Instalação
 
-A aplicação deve conter apenas uma página/rota e um carrinho.
+Certifique-se de ter o Node.js instalado. Clone o repositório e execute o seguinte comando:
 
-- <b>Loja</b>: A lista de produtos deve ser buscada de nossa API, use um shimmer/skeleton enquanto estiver em loading.
- 
-- <b>Carrinho</b>: O carrinho deve conter todos os produtos selecionados, juntamente com a opção de aumentar a quantidade de cada produto selecionado.
+```bash
+npm install
+```
 
-Use do Jest e a testing-library para realizar os testes unitários.
+# Execução do Projeto
 
-Recursos
----------------
+Para rodar o projeto localmente, utilize o comando:
 
-UI/UX: [Figma loja](https://www.figma.com/file/Z4z8osDbK1ET7cjNzFRMrK/MKS-Front-end-challenge?node-id=0%3A1) PS: O design system está incluso, incluindo a fonte.
+```bash
+npm run dev
+```
 
-API: [API REST de produtos](https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api-docs/) para exibir a lista de produtos da loja.
+Isso iniciará o servidor de desenvolvimento em http://localhost:3000.
 
-Ferramentas requeridas
----------------
-
-1. TypeScript
-2. React ou Next.js (Preferimos Next.js)
-3. React-query
-4. Styled-components
-5. Jest
-
-Aspectos técnicos
----------------
-
-Todas as ferramentas listadas anteriormente são mandatórias, além delas sinta-se livre para utilizar de qualquer outra technologia que te seja confortável.
-
-Faça o deploy!
----------------
-
-Ao finalizar, faça o deploy no lugar que te for confortável (exemplo: Vercel, Netlify, Heroku, Amazon EC2, App Runner, etc)
+# Funcionalidades
+- Listagem de Produtos: Os produtos são obtidos da API da MKS e exibidos na página inicial.
+- Adição ao Carrinho: É possível adicionar produtos ao carrinho, com a opção de aumentar a quantidade caso o produto já esteja no carrinho.
+- Remoção do Carrinho: Produtos podem ser removidos individualmente do carrinho.
+- Finalização da Compra: A finalização da compra é possível quando há itens no carrinho. Ao finalizar, o carrinho é esvaziado.
